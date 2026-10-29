@@ -1,0 +1,26 @@
+## Interface: 16001
+## Title: |cffd4a017Andreddi|r|cff3fa9f5PvE|r
+## Notes: Keeps a history of the players you run dungeons, keys and raids with: runs, 1-10 ratings, notes, always-invite/kick-on-sight lists, group join alerts and statistics.
+## Author: Andreddi
+## Version: @project-version@
+## SavedVariables: AndreddiPvEDB
+## X-NameStyle: Surname
+## IconTexture: Interface\Icons\INV_Misc_Key_03
+## AddonCompartmentFunc: AndreddiPvE_OnCompartmentClick
+## AddonCompartmentFuncOnEnter: AndreddiPvE_OnCompartmentEnter
+## AddonCompartmentFuncOnLeave: AndreddiPvE_OnCompartmentLeave
+
+Core.lua
+Data.lua
+Scanner.lua
+Runs.lua
+Roster.lua
+Tooltip.lua
+Menu.lua
+LFG.lua
+UI\Widgets.lua
+UI\Popup.lua
+UI\Alerts.lua
+UI\MainWindow.lua
+UI\Stats.lua
+UI\Settings.lua

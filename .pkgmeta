@@ -1,0 +1,4 @@
+package-as: AndreddiPvE
+
+ignore:
+  - Logo.jpg
