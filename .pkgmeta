@@ -2,3 +2,7 @@ package-as: AndreddiPvE
 
 ignore:
   - Logo.jpg
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
