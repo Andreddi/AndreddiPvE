@@ -8,3 +8,8 @@ CurseForge uses `CHANGELOG.md` as the changelog for each release (see `manual-ch
 - Put it under the section for the next release. If the top section's version is already tagged, start a new `## <version>` section above it. Tags look like `1.0.3`, without a "v".
 - Write only what changed. No commit hashes, author names, emails or co-author lines.
 - Leave out changes players can't see, such as README edits, line endings or refactors.
+
+## Commits
+
+- Commit as `Andreddi <45632848+Andreddi@users.noreply.github.com>`, the GitHub noreply address. Never use a personal email address in commits or anywhere else in the repo.
+- Check `git config user.email` before committing. GitHub blocks pushes with a private email address, and history that contains one has to be rewritten.
