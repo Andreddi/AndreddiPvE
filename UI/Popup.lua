@@ -33,6 +33,23 @@ local function Touch()
     if run then popup.touched = true end
 end
 
+-- Adds the text to the note of everyone in the run, after any note they
+-- already have.
+local function ApplyGroupNote(text)
+    local run = CurrentRun()
+    text = strtrim(text or "")
+    if not run or text == "" then return end
+    for key in pairs(run.members) do
+        local p = ns:GetPlayer(key)
+        local old = p and p.note
+        if not old then
+            ns:SetPlayerNote(key, text)
+        elseif not old:find(text, 1, true) then
+            ns:SetPlayerNote(key, old .. "; " .. text)
+        end
+    end
+end
+
 local function BuildRow(row)
     row.name = UI.Text(row, "GameFontNormal")
     row.name:SetPoint("TOPLEFT", 6, -6)
@@ -122,6 +139,17 @@ local function Build()
     end)
     popup.open:SetPoint("BOTTOMLEFT", 12, 10)
 
+    -- Only Enter applies it; clicking away or closing the popup does not.
+    popup.groupNote = UI.EditBox(popup, 270, 20)
+    popup.groupNote:SetPlaceholder("Note for everyone (Enter to add)")
+    popup.groupNote:SetPoint("LEFT", popup.open, "RIGHT", 8, 0)
+    popup.groupNote:HookScript("OnEditFocusGained", Touch)
+    popup.groupNote:SetScript("OnEnterPressed", function(self)
+        ApplyGroupNote(self:GetText())
+        self:SetText("")
+        self:ClearFocus()
+    end)
+
     popup.dismiss = UI.Button(popup, "Close", 80, 20, function() ns:ClosePopup() end)
     popup.dismiss:SetPoint("BOTTOMRIGHT", -12, 10)
 
@@ -191,6 +219,8 @@ end
 function ns:ClosePopup()
     if not popup then return end
     CommitNotes()
+    popup.groupNote:SetText("")
+    popup.groupNote:ClearFocus()
     table.remove(queue, 1)
     popup.touched, popup.remaining = false, nil
     popup.list.offset = 0
